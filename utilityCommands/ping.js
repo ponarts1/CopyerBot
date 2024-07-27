@@ -1,16 +1,15 @@
-const { EmbedBuilder } = require('discord.js');
+const { EmbedBuilder } = require("discord.js");
 
 module.exports = {
-    name: 'ping',
-    description: 'Check the bot\'s ping',
+    name: "ping",
+    description: "Check the bot's ping",
     execute(message, args) {
         const ping = message.client.ws.ping;
         const embed = new EmbedBuilder()
-            .setColor('#FFFFFF')
-            .setTitle('Bot Latency')
-            .setDescription(`📊 The bot's ping is ${ping}ms.`)
+            .setColor("#FFFFFF")
+            .setTitle("Bot Latency")
+            .setDescription(`📊 Sinyal saya adalah ${ping}ms.`)
             .setTimestamp();
-
 
         message.reply({ embeds: [embed] });
     },
