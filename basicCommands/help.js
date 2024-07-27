@@ -1,82 +1,90 @@
-const { EmbedBuilder, ActionRowBuilder, ButtonBuilder } = require('discord.js');
-const { ButtonStyle } = require('discord.js');
+const { EmbedBuilder, ActionRowBuilder, ButtonBuilder } = require("discord.js");
+const { ButtonStyle } = require("discord.js");
 const db = require("../mongodb");
 module.exports = {
-  name: 'help',
-  aliases: ['hlp', 'h'],
-  description: 'Shows a list of available commands',
+  name: "help",
+  aliases: ["hlp", "h"],
+  description: "Shows a list of available commands",
   execute(message, args) {
     const botUser = message.client.user;
     const botPing = Date.now() - message.createdTimestamp;
     const serverCount = message.client.guilds.cache.size;
     const embed = new EmbedBuilder()
-      .setColor('#2b71ec')
+      .setColor("#2b71ec")
       .setAuthor({
-        name: 'Im here to Help!',
-        iconURL: 'https://cdn.discordapp.com/attachments/1175487983915376662/1175667506791325706/communication.png?ex=656c10b0&is=65599bb0&hm=e378f1b355a2401bcab504b08a0766001d6b7c090c91ce0a7a7a87c868feb955&', 
-        url: 'https://discord.gg/FUEHs7RCqz'
-    })
-     
-      .setDescription(`__**STATS :**__\n\n> **📊 Bot in servers:** ${serverCount}\n> **🟢 Bot Ping:** ${botPing}ms\n> **👑 Made By [GlaceYT](https://www.youtube.com/channel/UCPbAvYWBgnYhliJa1BIrv0A)**\n\n__**COMMANDS :**__ `)
-      .addFields(
-      
-        {
-          name: '▶️  Basic',
-          value: '`avatar`, `owner`, `support`, `invite`, `userinfo`',
-          inline: true,
-        },
-       
-        {
-          name: '▶️  Music',
-          value: '`play`, `stop`, `seek`,`volume`,`pause`,`resume`,`skip`,`remove`,`shuffle`,`queue`',
-          inline: true,
-        },
-      
-        {
-          name: '▶️  Fun',
-          value: ' `ascii`, `joke`, `roll`',
-          inline: true,
-        },
-      
-        {
-          name: '▶️  Image',
-          value: '`cat`, `dog`',
-          inline: true,
-        },
-      
-        {
-          name: '▶️  Anime',
-          value: '`<prefix>animecommands for more info`',
-          inline: true,
-        },
-     
-        {
-          name: '▶️  Utility',
-          value: '`kick`, `ban`, `serverinfo`,`userinfo`, `clear`',
-          inline: true,
-        }
+        name: "Im here to Help!",
+        iconURL:
+          "https://media.discordapp.net/attachments/1266656449896120371/1266656570339758141/8847_rules.gif?ex=66a5f15b&is=66a49fdb&hm=2eca55b4833835e4925a94b6ff63eadaf7e41b2be3b318d3292a63f8a3478205&=&width=27&height=26",
+        url: "https://discord.gg/8Cc8df9Fdg",
+      })
+
+      .setDescription(
+        `__**STATS :**__\n\n> **📊 Copyer berada di :** ${serverCount} **server**\n> **🟢 Sinyal Copyer:** ${botPing}ms\n> **👑 Owner [ponar.](https://discord.gg/8Cc8df9Fdg)**\n\n__**COMMANDS :**__ `,
       )
-      .setThumbnail(botUser.avatarURL({ dynamic: true, format: 'png', size: 1024 }))
-      .setImage(`https://cdn.discordapp.com/attachments/1113800537402527903/1236803979996958740/11.png?ex=6641e8b7&is=66409737&hm=96f69ba8bcde4ca44bf8713e22001e0bafad0335cfd1f57c439a34b4762f0e03&`);
+      .addFields(
+        {
+          name: "▶️  Dasar",
+          value: "`avatar`, `update`, `support`,`userinfo`",
+          inline: true,
+        },
+
+        {
+          name: "▶️  Musik",
+          value:
+            "`play`, `stop`, `seek`,`pause`,`resume`,`skip`,`remove`,`shuffle`,`queue`",
+          inline: true,
+        },
+
+        {
+          name: "▶️  Fun",
+          value: " `say`, `joke`, `roll`",
+          inline: true,
+        },
+
+        {
+          name: "▶️  Gambar",
+          value: "`cat`, `dog`",
+          inline: true,
+        },
+
+        {
+          name: "▶️  Utility",
+          value: "`serverinfo`,`userinfo`",
+          inline: true,
+        },
+
+        {
+          name: " ",
+          value: " ",
+          inline: true,
+        },
+      )
+      .setThumbnail(
+        botUser.avatarURL({ dynamic: true, format: "png", size: 1024 }),
+      )
+      .setImage(
+        `https://media.discordapp.net/attachments/862865027731685399/1266655479547826247/standard_1.gif?ex=66a5f057&is=66a49ed7&hm=00c8612a2d953e0ea8d5d3e29e8e5a8388489da868f7339393d78438403341fd&=&width=539&height=215`,
+      );
 
     const button1 = new ButtonBuilder()
-      .setLabel('YouTube')
-      .setURL('https://www.youtube.com/channel/UCPbAvYWBgnYhliJa1BIrv0A')
+      .setLabel("🔔 Support Server")
+      .setURL("https://discord.gg/8Cc8df9Fdg")
       .setStyle(ButtonStyle.Link);
 
     const button2 = new ButtonBuilder()
-      .setLabel('Discord')
-      .setURL('https://discord.gg/xQF9f9yUEM')
+      .setLabel("🎮 Sirkelo! Game Center")
+      .setURL("https://discord.gg/gvnW7uHxUV")
       .setStyle(ButtonStyle.Link);
 
     const button3 = new ButtonBuilder()
-      .setLabel('Code')
-      .setURL('https://github.com/GlaceYT')
+      .setLabel("🔗 Invite Copyer!")
+      .setURL(
+        "https://discord.com/oauth2/authorize?client_id=863981370815545344&scope=bot&permissions=3145736",
+      )
       .setStyle(ButtonStyle.Link);
-      
-    const row = new ActionRowBuilder()
-      .addComponents(button1, button2, button3);
-    
+
+    const row = new ActionRowBuilder().addComponents(button1, button2, button3);
+
     message.reply({ embeds: [embed], components: [row] });
   },
 };
