@@ -3,7 +3,7 @@ const { EmbedBuilder } = require('discord.js');
 const db = require("../mongodb");
 module.exports = {
   name: 'joke',
-  description: 'Tells a random joke',
+  description: 'Tells a random',
   async execute(message, args) {
     try {
       const response = await axios.get('https://official-joke-api.appspot.com/random_joke');
